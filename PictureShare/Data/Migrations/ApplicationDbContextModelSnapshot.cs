@@ -168,9 +168,6 @@ namespace PictureShare.Data.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Public")
-                        .HasColumnType("bit");
-
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
 
