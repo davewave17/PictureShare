@@ -9,14 +9,33 @@
     <div class="row">
         <form method="get">
             <div class="col-6 mt-5">
-                <div class="input-group mx-4">
+                <div class="input-group">
                     <input type="text" name="SearchBy" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="btn-search">
                     <button class="btn btn-dark" type="submit" id="btn-search"><i class="bi bi-search"></i></button>
                 </div>
             </div>
         </form>
 
+        <div class="p-2">
+            <div class="col-md-3">
+                <a asp-route-SortBy="captionAZ" asp-route-SearchBy="@ViewData["Search"]" class="btn btn-dark w-100 mx-2" id="btn-sort-captionAZ">Sort By Caption (A - Z)</a>
+            </div>
+            <div class="col-md-3">
+                <a asp-route-SortBy="captionZA" asp-route-SearchBy="@ViewData["Search"]" class="btn btn-dark w-100 mx-2" id="btn-sort-captionZA">Sort By Caption (Z - A)</a>
+            </div>
+            <div class="col-md-3">
+                <a asp-route-SortBy="userAZ" asp-route-SearchBy="@ViewData["Search"]" class="btn btn-dark w-100 mx-2" id="btn-sort-captionAZ">Sort By User (A - Z)</a>
+            </div>
+            <div class="col-md-3">
+                <a asp-route-SortBy="userAZ" asp-route-SearchBy="@ViewData["Search"]" class="btn btn-dark w-100 mx-2" id="btn-sort-captionAZ">Sort By User (Z - A)</a>
+            </div>
+        </div>
+
+
+
     </div>
+
+    
 
     <div class="row">
 
