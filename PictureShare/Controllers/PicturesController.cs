@@ -27,7 +27,7 @@ namespace PictureShare.Views
         // GET: Pictures
         public async Task<IActionResult> Index(string SearchBy)
         {
-
+            
             var data = _context.Picture.Where(x => x.UserEmail == User.Identity.Name);
 
             if (!String.IsNullOrEmpty(SearchBy))
