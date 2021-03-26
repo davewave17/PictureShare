@@ -30,11 +30,14 @@ namespace PictureShare.Views
 
             var data = _context.Picture.Where(x => x.UserEmail == User.Identity.Name);
 
-            if (!String.IsNullOrEmpty(SearchBy))
+            if(!String.IsNullOrEmpty(SearchBy))
             {
                 data = data.Where(x => x.Caption.Contains(SearchBy));
             }
-         
+            
+
+
+
             return View(await data.ToListAsync());
         }
 
@@ -94,6 +97,7 @@ namespace PictureShare.Views
 
                 pictureModel.UserEmail = User.Identity.Name;
                 pictureModel.ImagePath = $"{webPath}{fileName}";
+                pictureModel.Public = false;
 
                 _context.Add(pictureModel);
                 await _context.SaveChangesAsync();
@@ -123,7 +127,7 @@ namespace PictureShare.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserEmail,ImagePath,Caption")] PictureModel pictureModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserEmail,ImagePath,Caption,Public")] PictureModel pictureModel)
         {
             if (id != pictureModel.Id)
             {
