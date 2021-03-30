@@ -10,8 +10,8 @@ using PictureShare.Data;
 namespace PictureShare.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210323140143_AddPublic")]
-    partial class AddPublic
+    [Migration("20210330132254_AddCommentPublic")]
+    partial class AddCommentPublic
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -156,6 +156,32 @@ namespace PictureShare.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PictureShare.Models.CommentModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DTStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PictureModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PictureModelId");
+
+                    b.ToTable("CommentModel");
+                });
+
             modelBuilder.Entity("PictureShare.Models.PictureModel", b =>
                 {
                     b.Property<int>("Id")
@@ -169,6 +195,9 @@ namespace PictureShare.Data.Migrations
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Public")
                         .HasColumnType("bit");
@@ -301,6 +330,18 @@ namespace PictureShare.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PictureShare.Models.CommentModel", b =>
+                {
+                    b.HasOne("PictureShare.Models.PictureModel", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("PictureModelId");
+                });
+
+            modelBuilder.Entity("PictureShare.Models.PictureModel", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
