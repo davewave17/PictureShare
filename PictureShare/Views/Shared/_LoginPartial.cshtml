@@ -5,6 +5,9 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        <li class="nav-item mx-2">
+            <a asp-controller="Pictures" asp-action="Create" class="btn btn-outline-light"><i class="bi bi-card-image"></i> Upload Images</a>
+        </li>
 
         <li class="nav-item mx-2">
             <a asp-controller="Pictures" asp-action="Index" class="btn btn-outline-light"><i class="bi bi-card-image"></i> Manage Images</a>
