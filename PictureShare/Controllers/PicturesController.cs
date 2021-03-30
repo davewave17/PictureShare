@@ -51,6 +51,9 @@ namespace PictureShare.Views
 
             var comments = _context.Comment.Where(p => p.ImageId == id);
 
+            pictureModel.Comments = await comments.OrderByDescending(c => c.DTStamp).ToListAsync();
+
+
 
             if (pictureModel == null)
             {
@@ -197,23 +200,12 @@ namespace PictureShare.Views
         public async Task<IActionResult> Comment(string comment, int? id)
         {
 
-            //get pic model
-
-            //add comment
-
-            //update model
-
-            //save
             var pictureModel = await _context.Picture
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (pictureModel == null)
             {
                 return NotFound();
-            }
-
-            if(pictureModel.Comments == null)
-            {
-                pictureModel.Comments = new List<CommentModel>();
             }
 
 
@@ -234,4 +226,4 @@ namespace PictureShare.Views
 
         }
     }
-}
+    }

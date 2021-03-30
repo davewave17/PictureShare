@@ -15,6 +15,7 @@ namespace PictureShare.Models
 
         public string User { get; set; }
 
+        public int ImageId { get; set; }
 
     }
 }
