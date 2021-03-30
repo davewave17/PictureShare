@@ -30,5 +30,9 @@ namespace PictureShare.Models
         [NotMapped]
         public IFormFile Image { get; set; }
 
+        public PictureModel()
+        {
+            Comments = new List<CommentModel>();
+        }
     }
 }
