@@ -11,6 +11,7 @@ namespace PictureShare.Data
     {
         public DbSet<PictureModel> Picture { get; set; }
 
+        public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<CommentModel> Comment { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

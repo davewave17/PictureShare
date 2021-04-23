@@ -29,6 +29,11 @@ namespace PictureShare.Models
 
         [NotMapped]
         public IFormFile Image { get; set; }
+        [Required]
+        public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public CategoryModel Category { get; set; }
 
         public PictureModel()
         {
