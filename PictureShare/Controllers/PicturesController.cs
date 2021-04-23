@@ -28,21 +28,14 @@ namespace PictureShare.Views
         public async Task<IActionResult> Index(string SearchBy)
         {
             
-            var data = _context.Picture.Where(x => x.UserEmail == User.Identity.Name);
+            var data = _context.Picture.Where(x => x.UserEmail == User.Identity.Name).Include("Category");
 
             if (!String.IsNullOrEmpty(SearchBy))
             {
                 data = data.Where(x => x.Caption.Contains(SearchBy));
             }
-            List<PictureModel> pictures = await data.ToListAsync();
-
-            foreach (var picture in pictures)
-            {
-                picture.Category = await _context.Categories.FindAsync(picture.CategoryId);
-            }
-
-  
-            return View(pictures);
+            
+            return View(await data.ToListAsync());
         }
 
         // GET: Pictures/Details/5
